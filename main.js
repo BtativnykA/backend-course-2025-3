@@ -12,13 +12,11 @@ program
 program.parse(process.argv);
 const options = program.opts();
 
-// Перевірка обов'язкового параметра
 if (!options.input) {
   console.error('Please, specify input file');
   process.exit(1);
 }
 
-// Читання файлу
 let fileContent;
 try {
   fileContent = fs.readFileSync(options.input, 'utf-8');
@@ -27,32 +25,25 @@ try {
   process.exit(1);
 }
 
-// Розбиваємо на рядки (NDJSON формат - кожен об'єкт в окремому рядку)
 const lines = fileContent.split('\n').filter(line => line.trim() !== '');
 
 let results = [];
 
-// Обробка кожного рядка
 for (const line of lines) {
   try {
     const house = JSON.parse(line);
-    
-    // Фільтр за furnished
+
     if (options.furnished && house.furnishingstatus !== 'furnished') {
       continue;
     }
 
-    // Фільтр за ціною
     if (options.price && parseFloat(house.price) >= parseFloat(options.price)) {
       continue;
     }
 
-    // Додаємо результат (ціна + площа)
     results.push(`${house.price} ${house.area}`);
   } catch (e) {
-    // Якщо рядок не валідний JSON - просто пропускаємо
-    // Можна розкоментувати для відлагодження:
-    // console.error('Помилка парсингу:', e.message);
+
   }
 }
 
@@ -67,5 +58,3 @@ if (options.output) {
 if (options.display) {
   console.log(outputText);
 }
-
-// Якщо не задано output і display — нічого не виводимо
