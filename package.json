@@ -1,0 +1,23 @@
+{
+  "name": "backend-course-2025-3",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BtativnykA/backend-course-2025-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BtativnykA/backend-course-2025-3/issues"
+  },
+  "homepage": "https://github.com/BtativnykA/backend-course-2025-3#readme",
+  "description": "",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}
