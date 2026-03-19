@@ -3,7 +3,7 @@ const { Command } = require('commander');
 const program = new Command();
 
 program
-  .requiredOption('-i, --input <path>', 'шлях до файлу JSON')
+  .option('-i, --input <path>', 'шлях до файлу JSON')
   .option('-o, --output <path>', 'шлях до файлу для запису результату')
   .option('-d, --display', 'вивести результат у консоль')
   .option('-f, --furnished', 'показати лише будинки з меблями (furnished)')
@@ -43,18 +43,15 @@ for (const line of lines) {
 
     results.push(`${house.price} ${house.area}`);
   } catch (e) {
-
   }
 }
 
 const outputText = results.join('\n');
 
-// Запис у файл
 if (options.output) {
   fs.writeFileSync(options.output, outputText);
 }
 
-// Виведення у консоль
 if (options.display) {
   console.log(outputText);
 }
